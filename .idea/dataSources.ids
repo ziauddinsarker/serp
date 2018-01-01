@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - serp@localhost" uuid="158e9412-effc-407e-9fb8-472fbad588ae">
+    <database-info product="MySQL" version="5.5.5-10.1.26-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.44 ( Revision: b3cda4f864902ffdde495b9df93937c3e20009be )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="serp"/>
+    <table name="admin" schema="" catalog="serp" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_name" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mobile1" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="mobile2" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="CHAR" precision="60" scale="0" nullable="false" jdbcType="1"/>
+      <column name="role" sqlType="CHAR" precision="5" scale="0" nullable="false" jdbcType="1"/>
+      <column name="created_on" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="last_login" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="last_seen" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="last_edited" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="account_status" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1" def="JzEn"/>
+      <column name="deleted" sqlType="CHAR" precision="1" scale="0" nullable="false" jdbcType="1" def="JzAn"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="email" unique="true" columns="email"/>
+      <index name="mobile1" unique="true" columns="mobile1"/>
+    </table>
+    <table name="eventlog" schema="" catalog="serp" type="TABLE">
+      <column name="id" sqlType="BIGINT UNSIGNED" precision="20" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="event" sqlType="VARCHAR" precision="200" scale="0" nullable="false" jdbcType="12"/>
+      <column name="eventRowIdOrRef" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="eventDesc" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="eventTable" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="staffInCharge" sqlType="BIGINT UNSIGNED" precision="20" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="eventTime" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="lk_sess" schema="" catalog="serp" type="TABLE">
+      <column name="id" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ip_address" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="timestamp" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="data" sqlType="BLOB" precision="65535" scale="0" nullable="false" jdbcType="-4"/>
+    </table>
+    <table name="serp_company" schema="" catalog="serp" type="TABLE">
+      <column name="company_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="company_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_contact_person" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_contact_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="company_add_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="company_id"/>
+      <exported-key name="fk_product_company" table="serp_product" schema="" catalog="serp" columns="product_company"/>
+    </table>
+    <table name="serp_credit_sale" schema="" catalog="serp" type="TABLE">
+      <column name="credit_sale_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="credit_sale_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="credit_sale_by_employee" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="credit_sale_to" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="serp_employee" schema="" catalog="serp" type="TABLE">
+      <column name="employee_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="employee_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_phone" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="employee_email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_birth_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="employee_join_date" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="employee_blood_group" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="employee_picture_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="employee_id"/>
+    </table>
+    <table name="serp_employee_group" schema="" catalog="serp" type="TABLE">
+      <column name="employee_group_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="employee_group_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="employee_group_id"/>
+    </table>
+    <table name="serp_fixed_cost" schema="" catalog="serp" type="TABLE">
+      <column name="fixed_cost_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="fixed_cost_office_rent" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_stationary" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_employee" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_delivery" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_ta_da_p_e_bill" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_product_promotion" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="fixed_cost_others" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="fixed_cost_id"/>
+    </table>
+    <table name="serp_product" schema="" catalog="serp" type="TABLE">
+      <column name="product_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="product_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="product_size" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="product_attribute" sqlType="VARCHAR" precision="11" scale="0" nullable="true" jdbcType="12"/>
+      <column name="product_trade_price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="product_depo_price" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_add_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA=" version="true"/>
+      <column name="product_brand_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="product_sku" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="product_company" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="product_id"/>
+      <foreign-key name="fk_product_company" columns="product_company" ref-table="serp_company" ref-schema="" ref-catalog="serp" ref-columns="company_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk_product_id" table="serp_product_stock" schema="" catalog="serp" columns="stock_product_id"/>
+      <index name="fk_product_company" unique="false" columns="product_company"/>
+      <index name="product_id" unique="false" columns="product_id"/>
+    </table>
+    <table name="serp_product_category" schema="" catalog="serp" type="TABLE">
+      <column name="product_category_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_category_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="product_category_id"/>
+    </table>
+    <table name="serp_product_stock" schema="" catalog="serp" type="TABLE">
+      <column name="stock_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="stock_product_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93" version="true"/>
+      <primary-key name="PRIMARY" columns="stock_id"/>
+      <foreign-key name="fk_product_id" columns="stock_product_id" ref-table="serp_product" ref-schema="" ref-catalog="serp" ref-columns="product_id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="fk_product_id" unique="false" columns="stock_product_id"/>
+    </table>
+    <table name="serp_purchase_rate" schema="" catalog="serp" type="TABLE">
+      <column name="purchase_rate_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="purchase_rate_rate" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="purchase_quantity" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="serp_sale_type" schema="" catalog="serp" type="TABLE">
+      <column name="sale_type_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sale_type_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sale_type_id"/>
+    </table>
+    <table name="serp_sales" schema="" catalog="serp" type="TABLE">
+      <column name="sale_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sale_product_name" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sale_product_quantity" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sale_payment_method" sqlType="ENUM" precision="6" scale="0" nullable="true" jdbcType="1" def="J0Nhc2gn"/>
+      <column name="sale_shop_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sale_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="sale_id"/>
+    </table>
+    <table name="serp_sales_accounting" schema="" catalog="serp" type="TABLE">
+      <column name="sale_accounting_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="sale_accounting_target" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sale_accounting_achivement" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sale_accounting_cash" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sale_accounting_credit" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sale_accounting_credit_collection" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="serp_shop" schema="" catalog="serp" type="TABLE">
+      <column name="shop_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="shop_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_contact" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_contact_person" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_picture" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_map_location" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="shop_add_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="shop_id"/>
+    </table>
+    <table name="serp_stock" schema="" catalog="serp" type="TABLE">
+      <column name="stock_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="stock_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="stock_quantity" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="stock_received_quantity" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="stock_purchased_rate" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_sale_rate" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_goods_tp" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_goods_dp" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_box_size" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="stock_date" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="stock_id"/>
+    </table>
+  </data-source>
+</component>
