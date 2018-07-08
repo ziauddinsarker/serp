@@ -116,7 +116,7 @@
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Sales<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="flot.html">Sales List</a>
+                                <a href="<?=  base_url()?>dashboard/invoice_list">Invoices</a>
                             </li>
                             <li>
                                 <a href="morris.html">Today's Sale</a>

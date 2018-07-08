@@ -40,7 +40,7 @@
 
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input type="text" class="form-control" name="stock-quantity" placeholder="Enter Product Size">
+                                            <input type="text" class="form-control" name="stock-quantity" placeholder="Enter Product Quantity">
                                         </div>
 
 

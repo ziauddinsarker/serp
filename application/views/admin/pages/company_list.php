@@ -47,7 +47,7 @@
                                 <td><?php echo $company->company_contact_number;?></td>
                                 <td><?php echo $company->company_contact_person;?></td>
                                 <td><?php echo $company->company_email;?></td>
-                                <td><a class="btn btn-default" href="#">Edit</a>  <a class="btn btn-default" href="#">Delete</a></td>
+                                <td><a class="btn btn-default" href="<?php base_url();?>edit_company/<?php echo $company->company_id;?>">Edit</a>  <a class="btn btn-default" href="<?php base_url();?>delete_company/<?php echo $company->company_id;?>">Delete</a></td>
                             </tr>
                         <?php }  ?>
                         </tbody>

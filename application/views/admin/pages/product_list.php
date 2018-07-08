@@ -48,7 +48,7 @@
                                         <td><?php echo $product->product_size;?></td>
                                         <td><?php echo $product->product_trade_price;?></td>
                                         <td><?php echo $product->product_depo_price;?></td>
-                                        <td><a class="btn btn-default" href="#">Edit</a>  <a class="btn btn-default" href="#">Delete</a></td>
+                                        <td><a class="btn btn-default" href="<?php base_url();?>edit_product/<?php echo $product->product_id ;?>">Edit</a>  <a class="btn btn-default" href="<?php base_url();?>delete_product/<?php echo $product->product_id ;?>">Delete</a></td>
                                     </tr>
                                 <?php }  ?>
                                 </tbody>
