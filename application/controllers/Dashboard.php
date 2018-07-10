@@ -35,6 +35,7 @@ class Dashboard extends CI_Controller
 
         //List showing to show as a dropodown list
         $this->data['product_name_list'] = $this->dashboard_model->get_product_name();
+        $this->data['product_name_list_json'] = $this->dashboard_model->get_product_name_json();
 
         $this->data['company_name_list'] = $this->dashboard_model->get_company_name();
 
@@ -572,6 +573,27 @@ class Dashboard extends CI_Controller
         $this->load->view('admin/pages/add_invoice',$this->data);
         $this->load->view('admin/pages/admin_footer');
     }
+
+
+    public function searchProductInInvoice(){
+        $result = [];
+        $this->load->database();
+        if(!empty($this->input->get("q"))){
+
+            $this->db->like('product_name', $this->input->get("q"));
+
+            $sql_query = $this->db->select('product_id,product_name')
+
+                ->limit(10)
+
+                ->get("serp_product");
+
+            $result = $sql_query->result();
+
+        }
+        echo json_encode($result);
+    }
+
 
 //TODO need to make new invoice number
 

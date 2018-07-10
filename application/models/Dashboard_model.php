@@ -47,7 +47,7 @@ class Dashboard_model extends CI_Model
      */
     function get_product_name()
     {
-        $this->db->select('product_id,product_name');
+        $this->db->select('product_id,product_name,product_trade_price');
         $this->db->from('serp_product');
         $this->db->order_by('product_name', 'ASC');
         $query = $this->db->get();
@@ -63,6 +63,33 @@ class Dashboard_model extends CI_Model
         }
         return $doc_specility_result = array_combine($product_name_id, $product_name);
     }
+
+     function get_product_name_json()
+    {
+        $this->db->select('product_id,product_name,product_trade_price');
+        $this->db->from('serp_product');
+        $this->db->order_by('product_name', 'ASC');
+        $query = $this->db->get();
+
+        $result = $query->result();
+        /*
+
+        $x = [];
+
+        for ($i = 0; $i < count($result); $i++) {
+
+            $x += $result[$i]->product_id;
+            $x += $result[$i]->product_name;
+            $x += $result[$i]->product_trade_price;
+        }
+        */
+
+
+        return json_encode($query->result());
+
+    }
+
+
 
     /**
      * @param $product_id
