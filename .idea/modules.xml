@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SERP.iml" filepath="$PROJECT_DIR$/SERP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/serp.iml" filepath="$PROJECT_DIR$/serp.iml" />
     </modules>
   </component>
 </project>

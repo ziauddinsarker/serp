@@ -117,7 +117,13 @@
                         <td><input type="text" class="form-control amount" data-type="amount" id='amount_1' name="amount[]" readonly="readonly"></td>
                         <td><a href="#" class="btn btn-primary remove"><i class="fa fa-times"></i></a></td>
                     </tr>
-
+<!--
+                        <tr>
+                            <td>
+                                <select class="productName form-control" style="width:500px" name="productName"></select>
+                            </td>
+                        </tr>
+-->
                     </tbody>
                     <tfoot>
                     <th class="no-style" colspan="8"></th>

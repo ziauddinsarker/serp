@@ -8,7 +8,7 @@ defined('BASEPATH') OR exit('');
  * @date 25th Dec, 2017
  *
  */
-class Items extends CI_Controller
+class Products extends CI_Controller
 {
 
     public function __construct()
@@ -18,7 +18,11 @@ class Items extends CI_Controller
         $this->genlib->checkLogin();
 
         $this->load->model(['product']);
+
+        $total_invoice = $this->Product->getAll();
     }
+
+
 
 
 

@@ -18,6 +18,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url("assets/dist/js/sb-admin-2.js")?> "></script>
+<!-- Include External js-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
 
 
 <script>
@@ -69,7 +73,7 @@
     }
 
 
-
+/*
 
     var multiple = ["4|VITREX 450 ml|1050|",
         "6|VITREX 950 ml|1400|",
@@ -79,6 +83,27 @@
 
     ];
 
+*/
+
+    //This is to get data from database using json but need to split
+    var  i, j,x="";
+    var plist = <?php echo $product_name_list_json; ?>
+
+   // plist = [{"product_id":"9","product_name":"Promotional Items","product_trade_price":"1050.00"},{"product_id":"7","product_name":"Tiles Adhesives Powder 1kg","product_trade_price":"2250.00"},{"product_id":"8","product_name":"Tiles Adhesives Powder Off White 1kg","product_trade_price":"600.00"}];
+
+    for(i in plist){
+        x += "\""+plist[i].product_id + "|";
+        x += plist[i].product_name + "|";
+        x += plist[i].product_trade_price + "|\",";
+    }
+    console.log("[" + x + "]");
+    var q = document.write("[" + x + "]");
+    //"9|Promotional Items|1050.00","7|Tiles Adhesives Powder 1kg|2250.00","8|Tiles Adhesives Powder Off White 1kg|600.00",
+
+   //var multiple = JSON && JSON.parse(x) || $.parseJSON(x)|| JSON.parse(JSON.stringify(x));
+    var multiple ="[" + q + "]" ;
+    //return JSON.parse( x );
+    /**************************************/
     //autocomplete script
     $(document).on('focus','.autocomplete_txt',function(){
         type = $(this).data('type');
@@ -86,6 +111,8 @@
         if(type =='productcodeid' )autoTypeNo=0;
         if(type =='productcode' )autoTypeNo=1;
         if(type =='price' )autoTypeNo=2;
+
+
 
         $(this).autocomplete({
             minLength: 0,
@@ -114,6 +141,7 @@
                 $('#productcode_'+elementId).val(names[1]);
                 $('#price_'+elementId).val(names[2]);
             }
+
         });
 
         /*
@@ -129,88 +157,6 @@
 </script>
 
 
-
-
-<script>
-    /*
-     $(document).ready(function(e){
-     var site_url = "<?php //echo site_url(); ?>";
-     var input = $("input[id=pcode]");
-
-     $.get(site_url+'inventory/json_search_product', function(data){
-     input.typeahead({
-     source: data,
-     minLength: 1,
-     });
-     }, 'json');
-
-     input.change(function(){
-     var current = input.typeahead("getActive");
-     $('#product_id').val(current.id);
-     $('#price').val(current.price);
-     $('#pcode').val(current.pcode);
-     });
-     });
-     */
-</script>
-<script>
-    /*
-     $(document).ready(function() {
-     // On change of the dropdown do the ajax
-     $("#proCode").change(function() {
-     $.ajax({
-     // Change the link to the file you are using
-     url: '<?php //base_url()?>json_search_product',
-     type: 'post',
-     // This just sends the value of the dropdown
-     data: { client: $(this).val() },
-     success: function(response) {
-     // Parse the jSON that is returned
-     // Using conditions here would probably apply
-     // incase nothing is returned
-     var Vals    =   JSON.parse(response);
-
-     var productCode = $("#proCode").val();
-
-     for(i = 0; i < Vals.length; i++) {
-
-     if(Vals[i].pcode === productCode){
-     //$("input[name='kk']").val(Vals[0].price);
-     //$("input[name='kk']").val(Vals[i].price);
-     //console.log(Vals[i]);
-     }else{
-     $("input[id='price']").val(Vals[i].price);
-     //$("input[name='kk']").val(Vals[i].price);
-     //console.log(Vals[i]);
-     break;
-     }
-
-     // console.log(Vals[i].price);
-     }
-
-     /*
-     var hasTag = function(productCode) {
-     var i = null;
-     for (i = 0; tags.length > i; i += 1) {
-     if (Vals[i].pcode === productCode) {
-     return true;
-     }
-     }
-
-     return false;
-     };
-
-     */
-    // These are the inputs that will populate
-    //$("input[name='kk']").val(Vals[0].id);
-    //console.log(Vals.price)
-    /*
-     }
-     });
-     });
-     });
-     */
-</script>
 
 
 <script>
@@ -319,36 +265,7 @@
 
         $('.discount').html(t);
     }
-/*
 
-     function addnewrow(){
-         var n = ($('.detail tr').length-0)+1;
-         var tr = '<tr>'+
-         '<td class="no">' + n + '</td>'+
-         '<td colspan="4">'+
-         '<select class="form-control" name="productcode[]">'+
-        <?php /*foreach ($products as $row):
-        {
-        ?>
-         '<option value="<?php echo $row->product_id; ?>"><?php echo $row->product_code; ?></option>'+
-
-        <?php
-            }
-        endforeach; */?>
-         '</select>'+
-         '</td>' +
-         '<td><input type="text" class="form-control quantity" name="quantity[]" required="required"></td>'+
-         '<td><input type="text" class="form-control price" name="price[]" required="required"></td>'+
-         '<td><input type="text" class="form-control discount-amount" name="discountamount[]"></td>'+
-         '<td><input type="text" class="form-control discount" name="discount[]"></td>'+
-         '<td><input type="text" class="form-control amount" name="amount[]" readonly="readonly"></td>'+
-         '<td><a href="#" class="btn btn-primary remove"><i class="fa fa-times"></i></a> </td>'+
-         '</tr>';
-
-         $('.detail').append(tr);
-     }
-
-*/
 
 
 
@@ -395,6 +312,38 @@
 
 
 
+</script>
+
+<script type="text/javascript">
+    /*
+    $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+    $('.productName').select2({
+
+
+        placeholder: '--- Select Products ---',
+
+        ajax: {
+            url: '/search',headers: {
+                'X-CSRF-Token': $('input[name="csrf_test_name"]').val()
+            },
+
+            dataType: 'json',
+
+            delay: 250,
+
+            processResults: function (data) {
+                return {
+
+                    results: data
+
+                };
+            },
+
+            cache: true
+        }
+    });
+    */
 </script>
 
 
