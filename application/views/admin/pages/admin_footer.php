@@ -11,10 +11,6 @@
 <!-- Metis Menu Plugin JavaScript -->
 <script src="<?php echo base_url("assets/vendor/metisMenu/metisMenu.min.js")?> "></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="<?php echo base_url("assets/vendor/raphael/raphael.min.js")?> "></script>
-<script src="<?php echo base_url("assets/vendor/morrisjs/morris.min.js")?> "></script>
-<script src="<?php echo base_url("assets/data/morris-data.js")?> "></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="<?php echo base_url("assets/dist/js/sb-admin-2.js")?> "></script>
@@ -73,36 +69,41 @@
     }
 
 
-/*
 
-    var multiple = ["4|VITREX 450 ml|1050|",
-        "6|VITREX 950 ml|1400|",
-        "7|Tiles Adhesives Powder 1kg|2250|",
-        "8|Tiles Adhesives Powder Off White 1kg|600|",
-        "9|Promotional Items|1050|",
+    //var multiple = ["9|Promotional Items|1050.00|","7|Tiles Adhesives Powder 1kg|2250.00|","8|Tiles Adhesives Powder Off White 1kg|600.00|",];
+    //console.log("This is Manual Data");
+    //console.log(multiple);
 
-    ];
-
-*/
 
     //This is to get data from database using json but need to split
-    var  i, j,x="";
+    var  i,j, product ="";
     var plist = <?php echo $product_name_list_json; ?>
 
    // plist = [{"product_id":"9","product_name":"Promotional Items","product_trade_price":"1050.00"},{"product_id":"7","product_name":"Tiles Adhesives Powder 1kg","product_trade_price":"2250.00"},{"product_id":"8","product_name":"Tiles Adhesives Powder Off White 1kg","product_trade_price":"600.00"}];
 
-    for(i in plist){
-        x += "\""+plist[i].product_id + "|";
-        x += plist[i].product_name + "|";
-        x += plist[i].product_trade_price + "|\",";
-    }
-    console.log("[" + x + "]");
-    var q = document.write("[" + x + "]");
-    //"9|Promotional Items|1050.00","7|Tiles Adhesives Powder 1kg|2250.00","8|Tiles Adhesives Powder Off White 1kg|600.00",
 
-   //var multiple = JSON && JSON.parse(x) || $.parseJSON(x)|| JSON.parse(JSON.stringify(x));
-    var multiple ="[" + q + "]" ;
-    //return JSON.parse( x );
+    /****************************Convert PHP Json Data to Desired format************************************/
+    var length = plist.length;
+    var results =[];
+    for (var i = 0; i < length; i++) {
+        results[i] =   plist[i].product_id + "|" + plist[i].product_name + "|" +  plist[i].product_trade_price + "|" ;
+    }
+    // do other work with your results below here
+    console.log("This is generated Data:");
+    console.log(results);
+
+
+
+    for (var i = 0; i < length; i++) {
+
+        product += plist[i].product_id + "|";
+        product += plist[i].product_name + "|";
+        product += plist[i].product_trade_price + "|";
+
+    }
+
+
+
     /**************************************/
     //autocomplete script
     $(document).on('focus','.autocomplete_txt',function(){
@@ -112,12 +113,10 @@
         if(type =='productcode' )autoTypeNo=1;
         if(type =='price' )autoTypeNo=2;
 
-
-
         $(this).autocomplete({
             minLength: 0,
             source: function( request, response ) {
-                var array = $.map(multiple, function (item) {
+                var array = $.map(results, function (item) {
                     var code = item.split("|");
                     return {
                         label: code[autoTypeNo],
@@ -128,6 +127,7 @@
                 //call the filter here
                 response($.ui.autocomplete.filter(array, request.term));
             },
+
             focus: function() {
                 // prevent value inserted on focus
                 return false;
