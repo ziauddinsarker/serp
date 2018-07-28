@@ -36,6 +36,7 @@ class Dashboard extends CI_Controller
         //List showing to show as a dropodown list
         $this->data['product_name_list'] = $this->dashboard_model->get_product_name();
         $this->data['product_name_list_json'] = $this->dashboard_model->get_product_name_json();
+        $this->data['shop_name_list_json'] = $this->dashboard_model->get_shop_name_json();
 
         $this->data['company_name_list'] = $this->dashboard_model->get_company_name();
 
@@ -659,6 +660,7 @@ class Dashboard extends CI_Controller
 
     function save_invoice(){
         $customer_data = array(
+            'invoice_shop_id' => $this->input->post('shop_id'),
             'invoice_shop_name' => $this->input->post('shop-name'),
             'invoice_customer_name' => $this->input->post('customer-name'),
             'invoice_customer_phone' => $this->input->post('customer-phone'),

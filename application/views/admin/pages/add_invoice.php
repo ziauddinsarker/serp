@@ -31,7 +31,8 @@
                             <div class="form-group">
                                 <label for="name" class="control-label col-xs-2">Shop</label>
                                 <div class="col-xs-10">
-                                    <input type="text" id="shop_list" name="shop-name" class="form-control" placeholder="Shop Name">
+                                    <input type="text" id="shop_name" name="shop-name" data-type="shopname" class="form-control shop_autocomplete" placeholder="Shop Name">
+                                    <input type="hidden" class="form-control" data-type="shopid" id='shop_id' name="shop_id" required="required">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
                             <div class="form-group">
                                 <label for="name" class="control-label col-xs-2">Name</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="customer-name" class="form-control" placeholder="Customer Name" required="required">
+                                    <input type="text" id="customer_name" data-type="customername" name="customer-name" class="form-control" placeholder="Customer Name" required="required">
                                 </div>
                             </div>
 
@@ -53,14 +54,14 @@
                             <div class="form-group">
                                 <label for="phone" class="control-label col-xs-2">Phone</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="customer-phone" class="form-control" placeholder="Phone" required="required" >
+                                    <input type="text" name="customer-phone" id="customer_phone" data-type="customerphone" class="form-control" placeholder="Phone" required="required" >
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="email" class="control-label col-xs-2">Email</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="customer-email" class="form-control" placeholder="Email">
+                                    <input type="text" name="customer-email" id="customer_email" data-type="customeremail" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                         </div>
@@ -69,7 +70,7 @@
                             <div class="form-group">
                                 <label for="date" class="control-label col-xs-2">Date</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="invoice_date" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
+                                    <input type="text" name="invoice_date"   class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly="readonly">
                                 </div>
                             </div>
 
@@ -83,7 +84,7 @@
                             <div class="form-group">
                                 <label for="location" class="control-label col-xs-2">Address</label>
                                 <div class="col-xs-10">
-                                    <input type="text" name="customer-address" class="form-control" placeholder="Address">
+                                    <input type="text" name="customer-address" id="customer_address"  data-type="customeraddress" class="form-control" placeholder="Address">
                                 </div>
                             </div>
                         </div>
@@ -146,7 +147,8 @@
                     <input type="hidden" class="form-control " id="inword" name="inword">
                 </div>
 
-                <input type="submit" class="btn btn-primary inv-btn" name="save" value="Print">
+                <input type="submit" class="btn btn-primary inv-btn" name="print" value="Print">
+                <input type="submit" class="btn btn-primary inv-btn" name="save" value="Save">
                 <!--<input type="submit" class="btn btn-primary inv-btn" name="print" value="Print" formtarget="_blank">-->
             </div>
             </div>
