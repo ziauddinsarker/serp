@@ -154,6 +154,70 @@
          */
     });
 
+
+    /**************************************/
+    //Shop list autocomplete script
+
+    //This is to get data from database using json but need to split
+    var  ii,jj, product ="";
+    var slist = <?php echo $shop_name_list_json; ?>
+
+        //console.log(slist);
+
+    /****************************Convert PHP Json Data to Desired format************************************/
+    var slength = slist.length;
+    var shop_resutls =[];
+    for (var ii = 0; ii < slength; ii++) {
+        shop_resutls[ii] =   slist[ii].shop_id + "|" + slist[ii].shop_name + "|" +  slist[ii].shop_contact + "|" +  slist[ii].shop_email + "|" +  slist[ii].shop_contact_person + "|" +  slist[ii].shop_address + "|" ;
+    }
+    // do other work with your results below here
+    console.log("This is Shop Data:");
+    console.log(shop_resutls);
+
+    $(document).on('focus','.shop_autocomplete',function(){
+        type = $(this).data('type');
+
+        if(type =='shopid' )autoTypeNo=0;
+        if(type =='shopname' )autoTypeNo=1;
+        if(type =='customername' )autoTypeNo=2;
+        if(type =='customerphone' )autoTypeNo=3;
+        if(type =='customeremail' )autoTypeNo=4;
+        if(type =='customeraddress' )autoTypeNo=5;
+
+        $(this).autocomplete({
+            minLength: 0,
+            source: function( request, response ) {
+                var array = $.map(shop_resutls, function (item) {
+                    var code = item.split("|");
+                    return {
+                        label: code[autoTypeNo],
+                        value: code[autoTypeNo],
+                        data : item
+                    }
+                });
+                //call the filter here
+                response($.ui.autocomplete.filter(array, request.term));
+            },
+
+            focus: function() {
+                // prevent value inserted on focus
+                return false;
+            },
+            select: function( event, ui ) {
+                var names = ui.item.data.split("|");
+                $('#shop_id').val(names[0]);
+                $('#shop_name').val(names[1]);
+                $('#customer_name').val(names[4]);
+                $('#customer_phone').val(names[2]);
+                $('#customer_email').val(names[3]);
+                $('#customer_address').val(names[5]);
+            }
+
+        });
+
+
+    });
+
 </script>
 
 
