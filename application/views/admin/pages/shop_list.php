@@ -47,7 +47,7 @@
                                 <td><?php echo $shop->shop_contact;?></td>
                                 <td><?php echo $shop->shop_contact_person;?></td>
                                 <td><?php echo $shop->shop_map_location;?></td>
-                                <td><a class="btn btn-default" href="#">Edit</a>  <a class="btn btn-default" href="#">Delete</a></td>
+                                <td><a class="btn btn-default" href="<?php base_url();?>edit_shop/<?php echo $shop->shop_id;?>">Edit</a>  <a class="btn btn-default" href="<?php base_url();?>delete_shop/<?php echo $shop->shop_id;?>">Delete</a></td>
                             </tr>
                         <?php }  ?>
                         </tbody>

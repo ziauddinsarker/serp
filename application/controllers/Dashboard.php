@@ -51,7 +51,7 @@ class Dashboard extends CI_Controller
     {
         $this->load->view('admin/pages/admin_header');
         $this->load->view('admin/pages/index');
-        $this->load->view('admin/pages/admin_footer');
+        $this->load->view('admin/pages/admin_footer',$this->data);
     }
 
     // Product List
@@ -240,6 +240,58 @@ class Dashboard extends CI_Controller
         $this->load->view('admin/pages/admin_footer');
     }
 
+    function edit_shop(){
+
+        //$this->data['company_list'] = $this->dashboard_model->get_company_name();
+
+        $shop_id = $this->uri->segment(3);
+        if ($shop_id == NULL) {
+            redirect('dashboard/shop_list');
+        }
+
+        $dt = $this->dashboard_model->edit_shop($shop_id);
+        // var_dump($dt);
+
+        $data['shop_id'] = $dt->shop_id;
+        $data['shop_name'] = $dt->shop_name;
+        $data['shop_contact'] = $dt->shop_contact;
+        $data['shop_address'] = $dt->shop_address;
+        $data['shop_email'] = $dt->shop_email;
+        $data['shop_contact_person'] = $dt->shop_contact_person;
+
+
+        //var_dump($data['company_name']);
+
+        $this->load->view('admin/pages/admin_header',$this->data);
+        $this->load->view('admin/pages/edit_shop',$data);
+        $this->load->view('admin/pages/admin_footer',$this->data);
+    }
+
+
+    function update_shop(){
+        if ($this->input->post('update')) {
+            $shopId = $this->input->post('shop-id');
+            $this->dashboard_model->update_shop($shopId);
+            redirect('dashboard/shop_list');
+        } else{
+            $id = $this->input->post('shop-id');
+            redirect('dashboard/edit_shop/'. $id);
+        }
+    }
+
+
+
+
+    /**
+     * @param $company_id
+     * Delete a product from a product List
+     */
+    public function delete_shop($shop_id){
+        $this->dashboard_model->delete_shop($shop_id);
+        redirect(base_url('dashboard/shop_list'));
+    }
+
+
 
     // Add Product Group
     public function add_shop_group()
@@ -351,6 +403,7 @@ class Dashboard extends CI_Controller
         $this->form_validation->set_rules('shop-name', 'Shop Name', 'trim|required|xss_clean');
         $this->form_validation->set_rules('shop-address', 'Shop Address', 'trim|required|xss_clean');
         $this->form_validation->set_rules('shop-contact', 'Shop Contact', 'trim|required|xss_clean');
+        $this->form_validation->set_rules('shop-email', 'Shop Email', 'trim|required|xss_clean');
         $this->form_validation->set_rules('shop-contact-person', 'Shop In charge', 'trim|xss_clean');
         $this->form_validation->set_rules('shop-picture', 'Shop Picture', 'trim|xss_clean');
         $this->form_validation->set_rules('shop-map-location', 'Shop Map Location', 'trim|xss_clean');
@@ -369,6 +422,7 @@ class Dashboard extends CI_Controller
             $shop_name = $this->input->post('shop-name');
             $shop_address = $this->input->post('shop-address');
             $shop_contact = $this->input->post('shop-contact');
+            $shop_email = $this->input->post('shop-email');
             $shop_contact_person = $this->input->post('shop-contact-person');
             $shop_picture = $this->input->post('shop-picture');
             $shop_map_location = $this->input->post('shop-map-location');
@@ -377,6 +431,7 @@ class Dashboard extends CI_Controller
                 'shop_name' => $shop_name,
                 'shop_address' => $shop_address,
                 'shop_contact' => $shop_contact,
+                'shop_email' => $shop_email,
                 'shop_contact_person' => $shop_contact_person,
                 'shop_picture' => $shop_picture,
                 'shop_map_location' => $shop_map_location,
@@ -572,7 +627,7 @@ class Dashboard extends CI_Controller
 
         $this->load->view('admin/pages/admin_header');
         $this->load->view('admin/pages/add_invoice',$this->data);
-        $this->load->view('admin/pages/admin_footer');
+        $this->load->view('admin/pages/admin_footer',$this->data);
     }
 
 
