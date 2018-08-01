@@ -142,6 +142,37 @@ class Dashboard_model extends CI_Model
         return $query->result();
     }
 
+    /**
+     * @param $company_id
+     * @return mixed
+     */
+    function edit_shop($shop_id){
+        $data = $this->db->get_where('serp_shop', array('serp_shop.shop_id' => $shop_id))->row();
+        return $data;
+    }
+
+
+    function update_shop($shop_id) {
+        $shop_update_data = array(
+            'shop_name' => $this->input->post('shop-name'),
+            'shop_address' => $this->input->post('shop-address'),
+            'shop_contact' => $this->input->post('shop-contact'),
+            'shop_contact_person' => $this->input->post('shop-contact-person'),
+            'shop_email' => $this->input->post('shop-email')
+        );
+
+        $this->db->where('shop_id', $shop_id);
+        $this->db->update('serp_shop', $shop_update_data);
+
+    }
+
+    function delete_shop($shop_id)
+    {
+        $this->db->where('shop_id',$shop_id);
+        $this->db->delete('serp_shop');
+    }
+
+
  /**
      *
      *

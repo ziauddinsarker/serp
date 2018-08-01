@@ -25,31 +25,31 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form  role="form" action="<?=  base_url()?>dashboard/add_to_shop" method="post">
+                                    <form  role="form" action="<?=  base_url()?>dashboard/update_shop" method="post">
 
                                         <div class="form-group">
                                             <label>Shop Name</label>
-                                            <input type="text" class="form-control" name="shop-name" placeholder="Enter Shop Name">
+                                            <input type="text" class="form-control" name="shop-name" placeholder="Enter Shop Name" value="<?php echo $shop_name ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Shop Address</label>
-                                            <input type="text" class="form-control" name="shop-address" placeholder="Enter Shop Address">
+                                            <input type="text" class="form-control" name="shop-address" placeholder="Enter Shop Address" value="<?php echo $shop_address ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Shop Contact</label>
-                                            <input type="text" class="form-control" name="shop-contact" placeholder="Enter Shop Contact">
+                                            <input type="text" class="form-control" name="shop-contact" placeholder="Enter Shop Contact" value="<?php echo $shop_contact ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Contact Person</label>
-                                            <input type="text" class="form-control" name="shop-contact-person" placeholder="Contact Person">
+                                            <input type="text" class="form-control" name="shop-contact-person" placeholder="Contact Person" value="<?php echo $shop_contact_person ?>">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Email</label>
-                                            <input type="text" class="form-control" name="shop-email" placeholder="Email Address">
+                                            <input type="text" class="form-control" name="shop-email" placeholder="Email Address" value="<?php echo $shop_email ?>">
                                         </div>
 
                                         <div class="form-group">
@@ -61,9 +61,8 @@
                                             <input type="text" class="form-control" name="shop-map-location" placeholder="Shop Map">
                                         </div>
 
-
-                                        <button type="submit" class="btn btn-default">Submit</button>
-                                        <button type="reset" class="btn btn-default">Reset</button>
+                                        <input type="hidden" name="shop-id" value="<?php echo $shop_id ?>">
+                                        <input type="submit" class="btn btn-primary" name="update" value="Update Shop">
                                     </form>
                                 </div>
 
